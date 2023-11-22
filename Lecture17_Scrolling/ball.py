@@ -19,13 +19,17 @@ class Ball:
         self.w = self.image.w
         self.h = self.image.h
 
+    def set_background(self, bg):
+        self.bg = bg
+
     def draw(self):
-        self.image.clip_draw_to_origin(self.window_left, self.window_bottom, self.cw, self.ch, self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        sx, sy = self.x - self.bg.window_left, self.y - self.bg.window_bottom
+        self.image.clip_draw(0, 0, 21, 21, sx, sy)
 
     def update(self):
-        self.window_left = clamp(0, int(server.boy.x) - self.cw // 2, self.w - self.cw - 1)
-        self.window_bottom = clamp(0, int(server.boy.y) - self.ch // 2, self.h - self.ch - 1)
+        # self.window_left = clamp(0, int(server.boy.x) - self.cw // 2, self.w - self.cw - 1)
+        # self.window_bottom = clamp(0, int(server.boy.y) - self.ch // 2, self.h - self.ch - 1)
+
         pass
 
 

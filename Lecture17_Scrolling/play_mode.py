@@ -40,8 +40,10 @@ def init():
     for balls in server.ball:
         game_world.add_object(balls, 1)
         game_world.add_collision_pair('boy:ball', None, balls)
+        balls.set_background(server.background)
 
     server.boy.set_background(server.background)
+
 
 
 def finish():
