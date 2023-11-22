@@ -7,11 +7,12 @@ import game_framework
 import game_world
 
 import server
+from Lecture17_Scrolling.ball import Ball
 from boy import Boy
 
 # fill here
-# from background import FixedBackground as Background
-from background import TileBackground as Background
+from background import FixedBackground as Background
+# from background import TileBackground as Background
 # from background import InfiniteBackground as Background
 
 
@@ -33,6 +34,12 @@ def init():
 
     server.boy = Boy()
     game_world.add_object(server.boy, 1)
+    game_world.add_collision_pair('boy:ball', server.boy, None)
+
+    server.ball = [Ball() for _ in range(100)]
+    for balls in server.ball:
+        game_world.add_object(balls, 1)
+        game_world.add_collision_pair('boy:ball', None, balls)
 
     server.boy.set_background(server.background)
 
